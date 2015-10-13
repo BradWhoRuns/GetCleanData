@@ -5,7 +5,7 @@ date: "October 13, 2015"
 output: html_document
 ---
 
-First I read the variable names from the features.txt file.
+First I read the variable names from the features.txt file and cleaned them using gsub.
 
 Next, I read the data from the X_test.txt and X_train.txt files.
 

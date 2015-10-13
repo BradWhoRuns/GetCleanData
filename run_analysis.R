@@ -11,14 +11,18 @@
                                                                  ## prompting the user to install them.
     
 ## The variable names given by the original researchers
-## are in the text file called features.  I'll use those
-## 
+## are in the text file called features.  I'll use those,
+## but I'm going to clean them up using gsub
 
 ActivityVector<-c("Walking", "Walking Up Stairs", "Walking Down Stairs",
                   "Sitting", "Standing", "Laying")    
         
 VarNames<-read.table("UCI HAR Dataset/features.txt")
-    
+VarNames<-gsub("\\)", "", gsub("\\(", "", gsub("-","",VarNames[,2])))
+
+
+ActivityVector<-c("Walking", "Walking Up Stairs", "Walking Down Stairs",
+                  "Sitting", "Standing", "Laying")    
     
 ## Let's start compiling the data
 
@@ -28,7 +32,7 @@ VarNames<-read.table("UCI HAR Dataset/features.txt")
     
 
 TestFile<-tbl_df(read.table("UCI HAR Dataset/test/X_test.txt"))
-  colnames(TestFile)<-make.names(VarNames$V2, unique=TRUE)
+  colnames(TestFile)<-make.names(VarNames, unique=TRUE)
   sub_num<-tbl_df(read.table("UCI HAR Dataset/test/subject_test.txt"))
   TestFile["Subj_ID_number"]<-sub_num$V1
     activity_num<-tbl_df(read.table("UCI HAR Dataset/test/y_test.txt"))
@@ -36,7 +40,7 @@ TestFile<-tbl_df(read.table("UCI HAR Dataset/test/X_test.txt"))
       TestFile<-mutate(TestFile, Activity = ActivityVector[Activity])
 
 TrainFile<-tbl_df(read.table("UCI HAR Dataset/train/X_train.txt"))   
-  colnames(TrainFile)<-make.names(VarNames$V2, unique=TRUE)
+  colnames(TrainFile)<-make.names(VarNames, unique=TRUE)
   sub_num<-tbl_df(read.table("UCI HAR Dataset/train/subject_train.txt"))
   TrainFile["Subj_ID_number"]<-sub_num$V1
     activity_num<-tbl_df(read.table("UCI HAR Dataset/train/y_train.txt"))

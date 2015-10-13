@@ -36,12 +36,12 @@ Ranges from 1 to 30, is the number assigned to the participants.
 The activities the participant did were, Walking, Walking Up Stair, Walking Down Stairs, Standing, Sitting and Laying.
 
 ##Measurement Variables.  
-Here, I used the variable names from the features.txt file.  Those tended to be of form: 
+Here, I used the variable names from the features.txt file, after using gsub to remove the -'s, and parentheses.  Those tended to be of form: 
 
-  Measurement.Statistic...Dimension 
+  MeasurementStatisticDimension 
 
-For example, the first such variable is "tBodyAcc.mean...X"  
+For example, the first such variable is "tBodyAccmeanX"  
 
-The entry you find under "tBodyAcc.mean...X" in the first row is the mean of the measurements of this variable that were collected while the person assigned Subject_ID_number 1 was walking.  
+The entry you find under "tBodyAccmeanX" in the first row is the mean of the measurements of this variable that were collected while the person assigned Subject_ID_number 1 was walking.  
 
 Since I used the select command to cut the data files down to just the variables I wanted, a repercussion of this is that all the standard deviation variables are listed after all the mean variables.  
